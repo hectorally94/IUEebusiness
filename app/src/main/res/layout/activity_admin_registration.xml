@@ -1,0 +1,131 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+   >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".AdminRegistration">
+
+
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            android:background android:background
+
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Admin shopping registration"
+                android:id="@+id/textview"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                tools:ignore="MissingConstraints" />
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:id="@+id/USerimageURL"
+                android:layout_below="@+id/textview"
+                android:layout_marginTop="20dp"
+                tools:ignore="MissingConstraints" />
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ButtonChooseImage"
+                android:layout_below="@+id/ShowImageView"
+                android:layout_marginTop="20dp"
+                android:text="Choose the logo"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/BusinessName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="BusinessName"
+                 />
+
+            <EditText
+                android:id="@+id/UserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="UserName"
+                 />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint=" email"
+                 />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint=" Enter password"
+                android:inputType="textPassword" />
+
+
+            <EditText
+                android:id="@+id/telephonelumicash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint=" number of lumicash"
+                 />
+
+            <EditText
+                android:id="@+id/Telephoneecocash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="number of ecocash"
+                 />
+
+            <EditText
+                android:id="@+id/nefID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter nif ID"
+                />
+            <EditText
+                android:id="@+id/IDpurmission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="ID "
+                 />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ButtonUploadImage"
+                android:layout_below="@+id/ImageNameEditText"
+                android:layout_marginTop="20dp"
+                android:text="Save"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

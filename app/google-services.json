@@ -1,0 +1,41 @@
+
+{
+  "project_info": {
+    "project_number": "451541188092",
+    "firebase_url": "https://ebusiness-d88cc.firebaseio.com",
+    "project_id": "ebusiness-d88cc",
+    "storage_bucket": "ebusiness-d88cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451541188092:android:89f8e449a2b465e057c679",
+        "android_client_info": {
+          "package_name": "com.iue.iueproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451541188092-jdv539qoa2b2rho80dua62bhbonlkip0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCIFZP4fGUm6vO_Ocdza53qtxmyvsGZNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451541188092-jdv539qoa2b2rho80dua62bhbonlkip0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
