@@ -226,10 +226,13 @@ public class AdminRegistration extends AppCompatActivity {
 
                             // Showing toast message after done uploading.
                             Toast.makeText(getApplicationContext(), " Uploaded Successfully ", Toast.LENGTH_LONG).show();
-
+                            Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!urlTask.isSuccessful());
+                            Uri downloadUrl = urlTask.getResult();
+//continue with your code
                             @SuppressWarnings("VisibleForTests")
                             AdminRegclass AdminRegclobjc = new AdminRegclass(
-                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),
+                                    downloadUrl.toString(),
                                     TempBusinessName,
                                     TempUserName,
                                     Tempemail,
