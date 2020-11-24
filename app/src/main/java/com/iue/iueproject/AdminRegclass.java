@@ -11,14 +11,9 @@ public class AdminRegclass  {
     public   String nefID;
     public   String idpurmission;
 
-
-
-
-
-    public AdminRegclass() {
+    public  AdminRegclass() {
 
     }
-
 
 
     public String getuSerimageURL() {
@@ -93,15 +88,18 @@ public class AdminRegclass  {
         this.idpurmission = idpurmission;
     }
 
-    public AdminRegclass(String USerimageURL,
-                         String BusinessName,
-                         String UserName,
-                         String email,
-                         String password,
-                         String telephonelumicash,
-                         String Telephoneecocash,
-                         String nefID,
-                         String IDpurmission) {
+    public AdminRegclass(
+
+            String USerimageURL,
+            String BusinessName,
+            String UserName,
+            String email,
+            String password,
+            String telephonelumicash,
+            String Telephoneecocash,
+            String nefID,
+            String IDpurmission
+    ) {
 
 
         this.uSerimageURL=USerimageURL;
@@ -113,6 +111,7 @@ public class AdminRegclass  {
         this.telephoneecocash=Telephoneecocash;
         this.nefID=nefID;
         this.idpurmission=IDpurmission;
+
     }
 
 }
