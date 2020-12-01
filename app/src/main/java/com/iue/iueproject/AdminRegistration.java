@@ -34,10 +34,10 @@ import java.io.IOException;
 
 public class AdminRegistration extends AppCompatActivity {
     // Folder path for Firebase Storage.
-    String Storage_Path = "All_Image_Uploads/";
+    String Storage_Path = "AdiminRegistrationimage/";
 
     // Root Database Name for Firebase Database.
-    String Database_Path = "All_Image_Uploads_Database";
+    String Database_Path = "AdiminRegistrationData";
 
     // Creating button.
     Button ChooseButton, UploadButton;
@@ -219,11 +219,8 @@ public class AdminRegistration extends AppCompatActivity {
                             String TempTelephoneecocash = editTelephoneecocash.getText().toString().trim();
                             String TempnefID = editnefID.getText().toString().trim();
                             String TempIDpurmission = editIDpurmission.getText().toString().trim();
-
                             // Hiding the progressDialog after done uploading.
-
                             progressDialog.dismiss();
-
                             // Showing toast message after done uploading.
                             Toast.makeText(getApplicationContext(), " Uploaded Successfully ", Toast.LENGTH_LONG).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
@@ -244,7 +241,6 @@ public class AdminRegistration extends AppCompatActivity {
 
                             // Getting image upload ID.
                             String ImageAdminId = databaseReference.push().getKey();
-
                             // Adding image upload id s child element into databaseReference.
                             databaseReference.child(ImageAdminId).setValue(AdminRegclobjc);
                         }

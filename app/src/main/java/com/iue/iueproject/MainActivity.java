@@ -28,26 +28,21 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
        // rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
 
-
         listData=new ArrayList<>();
-
-        final DatabaseReference nm= FirebaseDatabase.getInstance().getReference("All_Image_Uploads_Database");
-
+        final DatabaseReference nm= FirebaseDatabase.getInstance().getReference("AdiminRegistrationData");
         nm.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot npsnapshot : dataSnapshot.getChildren()){
                         AdminRegclass l=npsnapshot.getValue(AdminRegclass.class);
+                        //AdminRegclass l=npsnapshot.child("message1").child("title").getValue(AdminRegclass.class);
                         listData.add(l);
                     }
                     adapter=new MyAdapter(getApplicationContext(), listData);
                     rv.setAdapter(adapter);
-
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

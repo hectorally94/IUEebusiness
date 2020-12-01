@@ -1,0 +1,30 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+android:layout_width="240dp"
+android:layout_height="match_parent"
+android:layout_gravity="start"
+android:background="#FFFFFF"
+android:choiceMode="singleChoice"
+android:divider="@android:color/darker_gray"
+android:dividerHeight="1dp"
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/activity_addproduct"
+            android:icon="@drawable/foor"
+            android:title="Add Product"
+            />
+        <item
+            android:id="@+id/activity_favry_product"
+            android:icon="@drawable/five"
+            android:title="Favorities Product" />
+        <item
+            android:id="@+id/activity_shopping_cart"
+            android:icon="@drawable/foor"
+            android:title="Shopping Cart" />
+
+    </group>
+
+</menu>

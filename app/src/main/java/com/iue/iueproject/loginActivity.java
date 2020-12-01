@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class loginActivity extends AppCompatActivity implements View.OnClickListener{
+public class loginActivity extends  AppCompatActivity implements View.OnClickListener{
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonSignup;
@@ -40,6 +40,31 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
+
+        //////////////////////////////////////////////////////
+  /*     buttonSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                // get the value which input by user in EditText
+                // and convert it to string
+                String str = editTextEmail.getText().toString();
+
+                // Create the Intent object of this class Context() to Second_activity class
+                Intent intent = new Intent(getApplicationContext(), AdminDrower.class);
+
+                // now by putExtra method put the value in key, value pair
+                // key is message_key by this key we will receive the value, and put the string
+
+                intent.putExtra("message_key", str);
+
+                // start the Intent
+                startActivity(intent);
+
+            }
+        }
+        );*/
+            /////////////////////////////////////////
     }
 
     @Override
@@ -79,8 +104,18 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         if(task.isSuccessful()){
                             //display some message here
                             Toast.makeText(loginActivity.this,"Successfully ",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(loginActivity.this, Dashboardseller  .class);
+                            // get the value which input by user in EditText
+                            // and convert it to string
+                            String str = editTextEmail.getText().toString();
+                            // Create the Intent object of this class Context() to Second_activity class
+                            Intent intent = new Intent(getApplicationContext(), AdminDrower.class);
+                            // now by putExtra method put the value in key, value pair
+                            // key is message_key by this key we will receive the value, and put the string
+                            intent.putExtra("message_key", str);
+                            // start the Intent
                             startActivity(intent);
+                           // Intent intent = new Intent(loginActivity.this, AdminDrower.class);
+                           // startActivity(intent);
                         }else{
                             //display some message here
                             Toast.makeText(loginActivity.this," Error",Toast.LENGTH_LONG).show();
@@ -99,7 +134,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public  void selleronclick(View v){
-        Intent intent = new Intent(loginActivity.this, Dashboardseller.class);
+        Intent intent = new Intent(loginActivity.this, AdminDrower.class);
         startActivity(intent);
     }
 }

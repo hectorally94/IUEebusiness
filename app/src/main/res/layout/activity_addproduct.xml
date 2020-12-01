@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Addproduct">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="179dp"
+        android:layout_height="123dp"
+        android:layout_below="@id/toolbar"
+        android:background="@color/white"
+        android:elevation="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_centerHorizontal="true"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/imagproduct"
+            android:layout_width="179dp"
+            android:layout_height="123dp"
+            android:background="@color/white"
+
+            />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/addimagebutton"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/red"
+        android:layout_below="@id/cardview"
+        android:layout_marginTop="10dp"
+        android:text="Select the product"
+        >
+
+    </Button>
+    <EditText
+        android:id="@+id/productname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/addimagebutton"
+
+        android:layout_marginTop="8dp"
+        android:hint=" Product Name"
+        >
+
+    </EditText>
+    <EditText
+        android:id="@+id/productprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productname"
+        android:layout_margin="5dp"
+        android:hint=" Product price"
+        >
+
+    </EditText>
+    <EditText
+        android:id="@+id/productsize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productprice"
+        android:layout_margin="5dp"
+        android:hint=" Product Size"
+        >
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/productdescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productsize"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint=" Product Description"
+        android:inputType="textPersonName" />
+    <Button
+        android:id="@+id/addimagebuttonsav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:layout_below="@id/productdescription"
+        android:layout_margin="8dp"
+        android:text="UPload product"
+        >
+
+    </Button>
+    <!-- The ActionBar displayed at the top -->
+
+    <androidx.appcompat.widget.Toolbar
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/toolbar"
+        android:theme="@style/AppTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="?attr/colorPrimaryDark">
+        <TextView
+            android:id="@+id/toolbarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></TextView>
+    </androidx.appcompat.widget.Toolbar>
+
+
+</RelativeLayout>

@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserPoduct">
+    tools:context=".FavryProduct"
+    android:background="@color/white">
+    <!-- The ActionBar displayed at the top -->
+
+    <include
+
+        layout="@layout/toolbar"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

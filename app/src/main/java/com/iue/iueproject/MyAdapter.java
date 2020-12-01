@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -42,11 +42,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AdminRegclass ld=listData.get(position);
         holder.txtid.setText(ld.getBusinessName());
-        holder.txtname.setText(ld.getUserName());
-        holder.txtmovie.setText(ld.getEmail());
-        //Glide.with(mContext).load(ld.getuSerimageURL().toString()).into(holder.mImageIv);
+
+        Glide.with(mContext).load(ld.getuSerimageURL().toString()).into(holder.mImageIv);
       // Picasso.get().load(ld.getuSerimageURL()).into(holder.mImageIv);
-        Picasso.get().load(ld.getuSerimageURL().toString()).into(holder.mImageIv);
+        //Picasso.get().load(ld.getuSerimageURL().toString()).into(holder.mImageIv);
         //.mImageIv.setImageResource(String.valueOf(.valueOf(ld.getuSerimageURL().getBytes()))); //image
        // int intVal = Integer.valueOf(String.valueOf(ld.getuSerimageURL.getValue()));
 
@@ -59,15 +58,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtid,txtname,txtmovie;
+
+        private TextView txtid;
         private ImageView mImageIv;
 
         public ViewHolder(View itemView) {
             super(itemView);
             txtid=(TextView)itemView.findViewById(R.id.idtxt);
-            txtname=(TextView)itemView.findViewById(R.id.nametxt);
-            txtmovie=(TextView)itemView.findViewById(R.id.movietxt);
-             mImageIv=(ImageView)itemView.findViewById(R.id.rImageView);
+           mImageIv=(ImageView)itemView.findViewById(R.id.rImageView);
               
 
         }
