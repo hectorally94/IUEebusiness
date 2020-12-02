@@ -20,7 +20,7 @@
         app:cardUseCompatPadding="true">
 
         <ImageView
-            android:id="@+id/imagproduct"
+            android:id="@+id/imagprod"
             android:layout_width="179dp"
             android:layout_height="123dp"
             android:background="@color/white"

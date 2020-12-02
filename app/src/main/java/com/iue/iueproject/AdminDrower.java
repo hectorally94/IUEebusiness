@@ -14,25 +14,42 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDrower extends AppCompatActivity {
     private DrawerLayout mDrawer;
-
     private Toolbar toolbar;
-
     private NavigationView nvDrawer;
-
     private ActionBarDrawerToggle drawerToggle;
     private TextView eTextEmail;
     private NavigationView navigationView;
-
+///
+private List<addproductclass> listData;
+    private RecyclerView rv;
+    private MyproductAdapter adapter;
+    ////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_drower);
+        // loading
+        rv=(RecyclerView)findViewById(R.id.recyclerviewproduct);
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,7 +57,7 @@ public class AdminDrower extends AppCompatActivity {
 
         TextView textViewtoo = (TextView)toolbar.findViewById(R.id.toolbarTextView);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        textViewtoo.setText("Dashbord");
+        //textViewtoo.setText("Dashbord");
 
         // Find our drawer view
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -60,6 +77,7 @@ public class AdminDrower extends AppCompatActivity {
 // We can now look up items within the header if needed
        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.vimageView);
        eTextEmail = headerLayout.findViewById(R.id.TextEmail);
+
         // create the get Intent object
         Intent intent = getIntent();
 
@@ -69,9 +87,32 @@ public class AdminDrower extends AppCompatActivity {
 
         // display the string into textView
         eTextEmail.setText(str);
+        textViewtoo.setText(str);
 
         // Setup drawer view
         setupDrawerContent(nvDrawer);
+        /// populating data to the recyclerview
+        listData=new ArrayList<>();
+        final DatabaseReference nm= FirebaseDatabase.getInstance().getReference();
+        Query Q=nm.child("AdiminProducts").orderByChild("email").equalTo(str);
+        Q.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot npsnapshot : dataSnapshot.getChildren()){
+                        addproductclass l=npsnapshot.getValue(addproductclass.class);
+                        //AdminRegclass l=npsnapshot.child("message1").child("title").getValue(AdminRegclass.class);
+                        listData.add(l);
+                    }
+                    adapter=new MyproductAdapter(getApplicationContext(), listData);
+                    rv.setAdapter(adapter);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     private ActionBarDrawerToggle setupDrawerToggle() {
 
