@@ -1,10 +1,12 @@
 package com.iue.iueproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,20 +37,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
        // View view= LayoutInflater.from(mContext).inflate(R.layout.list_data,parent,false);
         View view = layoutInflater.inflate(R.layout.list_data, parent, false);
         return new ViewHolder(view);
-
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AdminRegclass ld=listData.get(position);
         holder.txtid.setText(ld.getBusinessName());
-
+        holder.Adminemail.setText(ld.getEmail());
         Glide.with(mContext).load(ld.getuSerimageURL()).into(holder.mImageIv);
       // Picasso.get().load(ld.getuSerimageURL()).into(holder.mImageIv);
         //Picasso.get().load(ld.getuSerimageURL().toString()).into(holder.mImageIv);
         //.mImageIv.setImageResource(String.valueOf(.valueOf(ld.getuSerimageURL().getBytes()))); //image
        // int intVal = Integer.valueOf(String.valueOf(ld.getuSerimageURL.getValue()));
 
+        holder.reclaclik.setOnClickListener((v)->{
+            Intent intent=new Intent(mContext, MyproductList.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("a",listData.get(position).getBusinessName());
+            intent.putExtra("b",listData.get(position).getuSerimageURL());
+            intent.putExtra("c",listData.get(position).getEmail());
+            mContext.startActivity(intent);
+        });
 
     }
 
@@ -59,13 +67,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView txtid;
+        private TextView txtid,Adminemail;
         private ImageView mImageIv;
+        RelativeLayout reclaclik;
 
         public ViewHolder(View itemView) {
             super(itemView);
             txtid=(TextView)itemView.findViewById(R.id.idtxt);
            mImageIv=(ImageView)itemView.findViewById(R.id.rImageView);
+           Adminemail= itemView.findViewById(R.id.emailAdmin);
+            reclaclik=itemView.findViewById(R.id.reclaclik);
               
 
         }

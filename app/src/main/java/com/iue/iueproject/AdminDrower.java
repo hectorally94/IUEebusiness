@@ -99,14 +99,17 @@ private List<addproductclass> listData;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+                    listData.clear();
                     for (DataSnapshot npsnapshot : dataSnapshot.getChildren()){
                         addproductclass l=npsnapshot.getValue(addproductclass.class);
                         //AdminRegclass l=npsnapshot.child("message1").child("title").getValue(AdminRegclass.class);
                         listData.add(l);
                     }
-                    adapter=new MyproductAdapter(getApplicationContext(), listData);
-                    rv.setAdapter(adapter);
+                   adapter=new MyproductAdapter(getApplicationContext(), listData);
+                   rv.setAdapter(adapter);
+
                 }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

@@ -5,13 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/reclaclik">
 
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbarone"
+        android:theme="@style/AppTheme"
+        android:layout_height="wrap_content"
+
+        android:layout_width="match_parent"
+
+        android:fitsSystemWindows="true"
+
+        android:minHeight="?attr/actionBarSize"
+
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+        android:background="?attr/colorPrimaryDark">
+        <TextView
+            android:id="@+id/toolbarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></TextView>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="?attr/actionBarSize"
        />
 </RelativeLayout>

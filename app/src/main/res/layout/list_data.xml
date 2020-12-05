@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:id="@+id/reclaclik">
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
@@ -36,11 +37,24 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-
+        android:layout_centerVertical="false"
         android:layout_marginStart="169dp"
         android:layout_marginLeft="169dp"
         android:textColor="@color/purple_200"
+
         android:textSize="30dp" />
+    <TextView
+        android:id="@+id/emailAdmin"
+        android:layout_width="232dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="false"
+        android:layout_below="@+id/idtxt"
+        android:layout_marginStart="169dp"
+        android:layout_marginLeft="169dp"
+        android:textColor="@color/purple_200"
+        android:textSize="20dp" />
 
     </RelativeLayout>

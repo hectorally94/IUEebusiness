@@ -56,15 +56,14 @@
 
             <!-- The main content view where fragments are loaded -->
 
-            <FrameLayout
-
-                android:id="@+id/flContent"
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewproduct"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="?attr/actionBarSize"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
-                android:layout_width="match_parent"
-
-                android:layout_height="match_parent" />
+                />
 
         </LinearLayout>
 
@@ -93,9 +92,5 @@
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewproduct"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"  />
+
 </RelativeLayout>

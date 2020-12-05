@@ -1,10 +1,12 @@
 package com.iue.iueproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,12 +43,26 @@ public class MyproductAdapter extends RecyclerView.Adapter<MyproductAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         addproductclass ld=listData.get(position);
-        holder.txtid.setText(ld.getNameproduct());
+        holder.Nameprod.setText(ld.getNameproduct());
+        holder.price.setText(ld.getPriceproduct());
+        holder.size.setText(ld.getSizeproduct());
+        holder.description.setText(ld.getProductdescription());
         Glide.with(mContext).load(ld.getImageproduct()).into(holder.mImageIv);
         // Picasso.get().load(ld.getuSerimageURL()).into(holder.mImageIv);
         //Picasso.get().load(ld.getuSerimageURL().toString()).into(holder.mImageIv);
         //.mImageIv.setImageResource(String.valueOf(.valueOf(ld.getuSerimageURL().getBytes()))); //image
         // int intVal = Integer.valueOf(String.valueOf(ld.getuSerimageURL.getValue()));
+
+        holder.reclaclik.setOnClickListener((v)->{
+            Intent intent=new Intent(mContext, MyproductListDetail.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("a",listData.get(position).getNameproduct());
+            intent.putExtra("b",listData.get(position).getPriceproduct());
+            intent.putExtra("c",listData.get(position).getSizeproduct());
+            intent.putExtra("d",listData.get(position).getProductdescription());
+            intent.putExtra("e",listData.get(position).getImageproduct());
+            mContext.startActivity(intent);
+        });
 
 
     }
@@ -58,13 +74,17 @@ public class MyproductAdapter extends RecyclerView.Adapter<MyproductAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView txtid;
+        private TextView description,size,price,Nameprod;
         private ImageView mImageIv;
-
+        RelativeLayout reclaclik;
         public ViewHolder(View itemView) {
             super(itemView);
-            txtid=(TextView)itemView.findViewById(R.id.idtxtprod);
+            Nameprod=(TextView)itemView.findViewById(R.id.idNameprod);
+            price=(TextView)itemView.findViewById(R.id.idpriceprod);
+            size=(TextView)itemView.findViewById(R.id.idsizeprod);
+            description=(TextView)itemView.findViewById(R.id.iddescriptprod);
             mImageIv=(ImageView)itemView.findViewById(R.id.rImageViewprod);
+            reclaclik=itemView.findViewById(R.id.reclaclik);
 
 
         }

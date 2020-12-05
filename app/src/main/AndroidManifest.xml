@@ -12,24 +12,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".shoppingCart"></activity>
-        <activity android:name=".FavryProduct" />
-        <activity android:name=".Addproduct" />
-        <activity android:name=".soo" />
-        <activity android:name=".AdminDrower">
-
-        </activity>
-        <activity android:name=".MainActivity" />
-
-        <activity android:name=".Dashboard" />
-        <activity android:name=".Forgetpassword" />
-        <activity android:name=".Aftersplash" />
-        <activity android:name=".Splash" >
+        <activity android:name=".WhatsappActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MyproductListDetail" />
+        <activity android:name=".MyproductList" />
+        <activity android:name=".shoppingCart" />
+        <activity android:name=".FavryProduct" />
+        <activity android:name=".Addproduct" />
+        <activity android:name=".soo" />
+        <activity android:name=".AdminDrower" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Dashboard" />
+        <activity android:name=".Forgetpassword" />
+        <activity android:name=".Aftersplash" />
+        <activity android:name=".Splash">
+
         </activity>
         <activity android:name=".AdminRegistration" />
         <activity android:name=".loginActivity" />
