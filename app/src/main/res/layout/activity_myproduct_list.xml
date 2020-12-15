@@ -8,41 +8,49 @@ android:background="@color/teal_700"
     android:id="@+id/reclaclik"
 tools:context=".MyproductList">
 
-<androidx.appcompat.widget.Toolbar
-    android:id="@+id/toolbartwo"
-    android:theme="@style/AppTheme"
-    android:layout_height="wrap_content"
-
-    android:layout_width="match_parent"
-
-    android:fitsSystemWindows="true"
-
-    android:minHeight="?attr/actionBarSize"
-
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-
-    android:background="?attr/colorPrimaryDark">
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="40dp"
-        android:layout_height="50dp"
-        android:id="@+id/toolBarPicture"
-        android:layout_gravity="right"
-        android:layout_marginLeft="15dp"
-        android:src="@drawable/ic_launcher_background"
-        android:textAlignment="center"
-        tools:ignore="RtlCompat" />
-    <TextView
-        android:id="@+id/toolbarCompanyName"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbartwo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ></TextView>
-</androidx.appcompat.widget.Toolbar>
+        android:background="?attr/colorPrimaryDark"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/AppTheme"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/toolBarPicture"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:id="@+id/toolbarCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
 
 
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/linea"
+        android:layout_below="@+id/toolbartwo"
+        android:background="#300737"
+        android:layout_gravity="bottom"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerviewproductList"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="0dp"
     android:paddingTop="?attr/actionBarSize"
     />
+    </LinearLayout>
 </RelativeLayout>

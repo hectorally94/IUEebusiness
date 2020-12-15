@@ -23,6 +23,7 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
         android:background="?attr/colorPrimaryDark">
+
         <TextView
             android:id="@+id/toolbarTextView"
             android:layout_width="wrap_content"
@@ -30,11 +31,24 @@
             ></TextView>
     </androidx.appcompat.widget.Toolbar>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linea"
+        android:layout_below="@+id/toolbarone"
+        android:background="#9C27B0"
+        android:layout_gravity="bottom"
         android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"
-       />
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:paddingTop="?attr/actionBarSize"
+            />
+    </LinearLayout>
+
+
 </RelativeLayout>

@@ -6,9 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <item
-        android:id="@+id/actionSearch"
+        android:id="@+id/actionSearchlist"
         android:icon="@drawable/search"
         android:title="Search"
+        android:layout_gravity="center_horizontal"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom|withText"   />
+        app:showAsAction="always|collapseActionView"  />
+
+
 </menu>

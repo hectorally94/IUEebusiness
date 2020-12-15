@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements Filterable {
     private List<AdminRegclass> listData;
+    private List<AdminRegclass> exampleListFull;
     private Context mContext;
     LayoutInflater layoutInflater;
 
@@ -27,9 +31,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         this.listData = listData;
         this.mContext = context;
         layoutInflater = LayoutInflater.from(mContext);
-
+        exampleListFull = new ArrayList<>(listData);
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -60,11 +63,40 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     }
 
+
     @Override
     public int getItemCount() {
         return listData.size();
     }
-
+        @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<AdminRegclass> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(exampleListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (AdminRegclass item : exampleListFull) {
+                    if (item.getBusinessName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            listData.clear();
+            listData.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView txtid,Adminemail;
@@ -81,4 +113,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
         }
     }
+
+
 }
