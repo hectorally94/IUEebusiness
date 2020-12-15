@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyproductAdapter extends RecyclerView.Adapter<MyproductAdapter.ViewHolder>implements Filterable {
+public class MyAdminproductAdapter extends RecyclerView.Adapter<MyAdminproductAdapter.ViewHolder>implements Filterable {
     private List<addproductclass> listData;
     private List<addproductclass> exampleListFull;
     private Context mContext;
@@ -27,7 +27,7 @@ public class MyproductAdapter extends RecyclerView.Adapter<MyproductAdapter.View
 
 
 
-    public MyproductAdapter(Context context, List<addproductclass> listData) {
+    public MyAdminproductAdapter(Context context, List<addproductclass> listData) {
         this.listData = listData;
         this.mContext = context;
         layoutInflater = LayoutInflater.from(mContext);
@@ -59,19 +59,18 @@ public class MyproductAdapter extends RecyclerView.Adapter<MyproductAdapter.View
         // int intVal = Integer.valueOf(String.valueOf(ld.getuSerimageURL.getValue()));
 
         holder.reclaclik.setOnClickListener((v)->{
-            Intent intent=new Intent(mContext, MyproductListDetail.class);
+            Intent intent=new Intent(mContext, EditActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("key",listData.get(position).mykey);
+            intent.putExtra("email",listData.get(position).email);
             intent.putExtra("a",listData.get(position).getNameproduct());
             intent.putExtra("b",listData.get(position).getPriceproduct());
             intent.putExtra("c",listData.get(position).getSizeproduct());
             intent.putExtra("d",listData.get(position).getProductdescription());
             intent.putExtra("e",listData.get(position).getImageproduct());
+              //  i.putExtra("id",listdata.id);
             mContext.startActivity(intent);
         });
-
-
-
-
     }
 
     @Override
@@ -112,9 +111,12 @@ public class MyproductAdapter extends RecyclerView.Adapter<MyproductAdapter.View
 
         private TextView description,size,price,Nameprod;
         private ImageView mImageIv;
+      
+        String id;
         RelativeLayout reclaclik;
         public ViewHolder(View itemView) {
             super(itemView);
+            String idmyky;
             Nameprod=(TextView)itemView.findViewById(R.id.idNameprod);
             price=(TextView)itemView.findViewById(R.id.idpriceprod);
             size=(TextView)itemView.findViewById(R.id.idsizeprod);

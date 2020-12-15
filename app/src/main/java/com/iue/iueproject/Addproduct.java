@@ -67,10 +67,8 @@ public class Addproduct extends AppCompatActivity {
         setContentView(R.layout.activity_addproduct);
         // Assign FirebaseStorage instance to storageReference.
         storageReference = FirebaseStorage.getInstance().getReference();
-
         // Assign FirebaseDatabase instance with root database name.
         databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
-
         //Assign ID'S to button.
         ChooseButton = (Button)findViewById(R.id.addimagebutton);
         UploadButton = (Button)findViewById(R.id.addimagebuttonsav);
@@ -183,10 +181,8 @@ public class Addproduct extends AppCompatActivity {
     }
 
     private void SaveAdminProduct() {
-
         // Checking whether FilePathUri Is empty or not.
         if (FilePathUri != null) {
-
             // Setting progressDialog Title.
             progressDialog.setTitle("Uploading...");
             // Showing progressDialog.
@@ -199,24 +195,26 @@ public class Addproduct extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
                             // Getting image name from EditText and store into string variable.
-                            String emailP = textViewtoo.getText().toString().trim(); ;
+                            String key = databaseReference.push().getKey();
+                            String emailP = textViewtoo.getText().toString().trim();
                             String NameP = productname.getText().toString().trim();
                             String priceP = productprice.getText().toString().trim();
                             String sizeP = productsize.getText().toString().trim();
                             String descriptionP = productdescription.getText().toString().trim();
-                          // Hiding the progressDialog after done uploading.
+                            // Hiding the progressDialog after done uploading.
                             progressDialog.dismiss();
                             // Showing toast message after done uploading.
                             Toast.makeText(getApplicationContext(), " Product Successfully ", Toast.LENGTH_LONG).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                            while (!urlTask.isSuccessful());
+                            while (!urlTask.isSuccessful()) ;
                             Uri downloadUrl = urlTask.getResult();
 //continue with your code
+
                             @SuppressWarnings("VisibleForTests")
+
                             addproductclass Adminprodlobjc = new addproductclass(
+                                    key,
                                     emailP,
                                     downloadUrl.toString(),
                                     NameP,
@@ -225,9 +223,9 @@ public class Addproduct extends AppCompatActivity {
                                     descriptionP);
 
                             // Getting image upload ID.
-                            String ImageAdminId = databaseReference.push().getKey();
+                            //String ImageAdminId = databaseReference.push().getKey();
                             // Adding image upload id s child element into databaseReference.
-                            databaseReference.child(ImageAdminId).setValue(Adminprodlobjc);
+                            databaseReference.child(key).setValue(Adminprodlobjc);
                         }
 
 

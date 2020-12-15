@@ -14,12 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity2">
-
-        </activity>
-        <activity android:name=".WhatsappActivity">
-
-        </activity>
+        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".WhatsappActivity"></activity>
         <activity android:name=".MyproductListDetail" />
         <activity android:name=".MyproductList" />
         <activity android:name=".shoppingCart" />

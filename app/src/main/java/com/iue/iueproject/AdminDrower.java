@@ -42,7 +42,7 @@ public class AdminDrower extends AppCompatActivity {
 ///
 private List<addproductclass> listData;
     private RecyclerView rv;
-    private MyproductAdapter adapter;
+    private MyAdminproductAdapter adapter;
     ////
 
     @Override
@@ -109,7 +109,7 @@ private List<addproductclass> listData;
                         //AdminRegclass l=npsnapshot.child("message1").child("title").getValue(AdminRegclass.class);
                         listData.add(l);
                     }
-                   adapter=new MyproductAdapter(getApplicationContext(), listData);
+                   adapter=new MyAdminproductAdapter(getApplicationContext(), listData);
                    rv.setAdapter(adapter);
 
                 }

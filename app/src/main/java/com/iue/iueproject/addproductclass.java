@@ -1,6 +1,18 @@
 package com.iue.iueproject;
 
 public class addproductclass {
+
+    public String mykey;
+
+
+    public String getMykey() {
+        return mykey;
+    }
+
+    public void setMykey(String mykey) {
+        this.mykey = mykey;
+    }
+
     public   String email;
 
     public String getEmail() {
@@ -61,6 +73,7 @@ public class addproductclass {
 
     }
     addproductclass (
+            String mykey,
             String email,
             String imageproduct,
             String nameproduct,
@@ -69,6 +82,7 @@ public class addproductclass {
             String productdescription
 
     ){
+        this.mykey=mykey;
         this.email=email;
         this.imageproduct=imageproduct;
         this.nameproduct=nameproduct;
