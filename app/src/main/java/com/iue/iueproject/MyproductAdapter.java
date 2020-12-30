@@ -61,6 +61,7 @@ public class MyproductAdapter extends RecyclerView.Adapter<MyproductAdapter.View
         holder.reclaclik.setOnClickListener((v)->{
             Intent intent=new Intent(mContext, MyproductListDetail.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("email",listData.get(position).email);
             intent.putExtra("a",listData.get(position).getNameproduct());
             intent.putExtra("b",listData.get(position).getPriceproduct());
             intent.putExtra("c",listData.get(position).getSizeproduct());

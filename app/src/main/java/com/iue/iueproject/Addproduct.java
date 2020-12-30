@@ -1,5 +1,4 @@
 package com.iue.iueproject;
-
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -31,16 +30,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-
 public class Addproduct extends AppCompatActivity {
     private Toolbar toolbar;
     String Storage_Path = "AdiminProductImages/";
     // Root Database Name for Firebase Database.
     String Database_Path = "AdiminProducts";
-
     // Creating button.
     Button ChooseButton, UploadButton;
-
     // Creating ImageView.
     ImageView productimage;
     EditText productname ;
@@ -48,7 +44,6 @@ public class Addproduct extends AppCompatActivity {
     EditText productsize ;
     EditText productdescription ;
     TextView textViewtoo;
-
     // Creating URI.
     Uri FilePathUri;
     // Creating StorageReference and DatabaseReference object.
@@ -57,10 +52,7 @@ public class Addproduct extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     // Image request code for onActivityResult() .
     int Image_Request_Code = 7;
-
     ProgressDialog progressDialog ;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,106 +72,74 @@ public class Addproduct extends AppCompatActivity {
         productimage = findViewById(R.id.imagprod); // Assign ID's to EditText.
         // Assigning Id to ProgressDialog.
         progressDialog = new ProgressDialog(Addproduct.this);
-
+        // Assigning Id to Toolbar and some configuration.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
        textViewtoo = (TextView)toolbar.findViewById(R.id.toolbarTextView);
-
         // Adding click listener to Choose image button.
         ChooseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // Creating intent.
                 Intent intent = new Intent();
-
                 // Setting intent type as image to select image from phone storage.
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Please Select Image"), Image_Request_Code);
-
             }
         });
-
         // Adding click listener to Upload image button.
         UploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // Calling method to upload selected image on Firebase storage.
                 SaveAdminProduct();
-
             }
-
-
         });
-
-
+        /// closing the layout by clicking on the arrow in toolbar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
-
-
         // create the get Intent object
         Intent intent = getIntent();
         // receive the value by getStringExtra() method
         // and key must be same which is send by first activity
         String str = intent.getStringExtra("Email_key");
         // display the string into textView
-
         textViewtoo.setText(str);
-
     }
     //////////on create methode
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == Image_Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
             FilePathUri = data.getData();
-
             try {
-
                 // Getting selected image into Bitmap.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
-
                 // Setting up bitmap selected image into ImageView.
                 productimage.setImageBitmap(bitmap);
-
                 // After selecting image change choose button above text.
                 ChooseButton.setText("Product Selected");
-
             }
             catch (IOException e) {
-
                 e.printStackTrace();
             }
         }
     }
     // Creating Method to get the selected image file Extension from File Path URI.
     public String GetFileExtension(Uri uri) {
-
         ContentResolver contentResolver = getContentResolver();
-
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-
         // Returning the file Extension.
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
-
     }
-
     private void SaveAdminProduct() {
         // Checking whether FilePathUri Is empty or not.
         if (FilePathUri != null) {
@@ -190,7 +150,6 @@ public class Addproduct extends AppCompatActivity {
             // Creating second StorageReference.
             StorageReference storageReference2nd = storageReference.child(Storage_Path + System.currentTimeMillis() + "." + GetFileExtension(FilePathUri));
             // Adding addOnSuccessListener to second StorageReference.
-
             storageReference2nd.putFile(FilePathUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -210,9 +169,7 @@ public class Addproduct extends AppCompatActivity {
                             while (!urlTask.isSuccessful()) ;
                             Uri downloadUrl = urlTask.getResult();
 //continue with your code
-
                             @SuppressWarnings("VisibleForTests")
-
                             addproductclass Adminprodlobjc = new addproductclass(
                                     key,
                                     emailP,
@@ -221,44 +178,34 @@ public class Addproduct extends AppCompatActivity {
                                     priceP,
                                     sizeP,
                                     descriptionP);
-
                             // Getting image upload ID.
                             //String ImageAdminId = databaseReference.push().getKey();
                             // Adding image upload id s child element into databaseReference.
                             databaseReference.child(key).setValue(Adminprodlobjc);
                         }
 
-
                     })
                     // If something goes wrong .
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-
                             // Hiding the progressDialog.
                             progressDialog.dismiss();
-
                             // Showing exception erro message.
                             Toast.makeText(Addproduct.this, exception.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     })
-
                     // On progress change upload time.
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
                             // Setting progressDialog Title.
                             progressDialog.setTitle(" Uploading...");
-
                         }
                     });
         }
         else {
-
             Toast.makeText(Addproduct.this, "Please Select Image or Add Image Name", Toast.LENGTH_LONG).show();
-
         }
-
     }
 }

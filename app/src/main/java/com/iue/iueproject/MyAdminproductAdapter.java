@@ -63,6 +63,8 @@ public class MyAdminproductAdapter extends RecyclerView.Adapter<MyAdminproductAd
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("key",listData.get(position).mykey);
             intent.putExtra("email",listData.get(position).email);
+            intent.putExtra("imgurl",listData.get(position).imageproduct);
+
             intent.putExtra("a",listData.get(position).getNameproduct());
             intent.putExtra("b",listData.get(position).getPriceproduct());
             intent.putExtra("c",listData.get(position).getSizeproduct());

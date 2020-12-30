@@ -77,7 +77,6 @@ public class WhatsappActivity extends AppCompatActivity {
                     sendIntent.setAction(Intent.ACTION_SEND);
                    // sendIntent.setPackage("com.whatsapp");
                     sendIntent.setType("image/png");
-
                     context.startActivity(sendIntent);
                     */
                     /*

@@ -1,5 +1,6 @@
 package com.iue.iueproject;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,9 @@ public class AdminDrower extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private TextView eTextEmail;
     private NavigationView navigationView;
+    ImageView vimageView;
+
+    ProgressDialog progressDialog ;
 ///
 private List<addproductclass> listData;
     private RecyclerView rv;
@@ -49,6 +54,11 @@ private List<addproductclass> listData;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_drower);
+
+        // Setting progressDialog Title.
+        progressDialog.setTitle("Loading...");
+        // Showing progressDialog.
+        progressDialog.show();
         // loading
         rv=(RecyclerView)findViewById(R.id.recyclerviewproduct);
         rv.setHasFixedSize(true);
@@ -78,6 +88,7 @@ private List<addproductclass> listData;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nvView);
 // Inflate the header view at runtime
         View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header);
+
 // We can now look up items within the header if needed
        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.vimageView);
        eTextEmail = headerLayout.findViewById(R.id.TextEmail);
@@ -111,9 +122,38 @@ private List<addproductclass> listData;
                     }
                    adapter=new MyAdminproductAdapter(getApplicationContext(), listData);
                    rv.setAdapter(adapter);
-
+                    // Hiding the progressDialog after done uploading.
+                    progressDialog.dismiss();
+                    // Showing toast message after done uploading.
+                    Toast.makeText(getApplicationContext(), "Welcome ", Toast.LENGTH_LONG).show();
                 }
 
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        ///feching image to the nav header
+        final DatabaseReference nmq= FirebaseDatabase.getInstance().getReference();
+        Query Qv=nmq.child("AdiminRegistrationData").orderByChild("email").equalTo(str);
+        Qv.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String nav = ds.child("uSerimageURL").getValue(String.class);
+
+                       // Picasso.get().load(ld.getuSerimageURL().toString()).into(ivHeaderPhoto);
+                        Picasso.get().load(nav).into(ivHeaderPhoto);
+
+                        /// String telephoneecocash = ds.child("telephoneecocash").getValue(String.class);
+                        ///Log.d("TAG", telephonelumicash + " / " + telephoneecocash);
+
+                    }
+
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

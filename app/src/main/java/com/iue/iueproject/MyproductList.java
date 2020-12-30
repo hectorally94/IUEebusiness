@@ -1,5 +1,6 @@
 package com.iue.iueproject;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,6 +35,7 @@ public class MyproductList extends AppCompatActivity {
     //variable to hold shared information
     String emailholder;
     String CompanyNameholder;
+    ProgressDialog progressDialog ;
     ///
     private List<addproductclass> listData;
 
@@ -43,6 +46,10 @@ public class MyproductList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myproduct_list);
+
+        progressDialog.setTitle("Loading...");
+        // Showing progressDialog.
+        progressDialog.show();
         Toolbar toolbar = findViewById(R.id.toolbartwo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -78,9 +85,11 @@ public class MyproductList extends AppCompatActivity {
                     }
                     adapter=new MyproductAdapter(getApplicationContext(), listData);
                     rv.setAdapter(adapter);
-
+                    // Hiding the progressDialog after done uploading.
+                    progressDialog.dismiss();
+                    // Showing toast message after done uploading.
+                    Toast.makeText(getApplicationContext(), "Welcome  ", Toast.LENGTH_LONG).show();
                 }
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -113,5 +122,4 @@ public class MyproductList extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
-
 }
